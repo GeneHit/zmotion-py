@@ -11,14 +11,14 @@ movement of mechanical systems. Below is a simple diagram of a motion control sy
 ```mermaid
 graph LR
     subgraph Control_Flow
-        A[Computer] --> |Commands| --> B[Motion Control Card]
-        B --> |Control Signals| --> C[Motor Driver]
-        C --> |Power| --> D[Motor]
-        D --> |Movement| --> E[Mechanical System]
+        A[Computer] ---> | Commands | ---> B[Motion Control Card]
+        B ---> | Control Signals | ---> C[Motor Driver]
+        C ---> | Power | ---> D[Motor]
+        D ---> | Movement | ---> E[Mechanical System]
     end
     subgraph Feedback_Loop
-        E --> |Feedback| --> F[Sensor]
-        F --> |Data| --> B --> A
+        E ---> | Feedback | ---> F[Sensor]
+        F ---> | Data | ---> B ---> A
     end
 ```
 
