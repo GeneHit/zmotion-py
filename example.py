@@ -36,7 +36,6 @@ class MotionControlCard:
 
     def send_cmd(
         self,
-        cmd_lock: threading.Lock,
         cmd: str,
         direct_or_execute: str = "direct"
     ) -> str:
@@ -58,13 +57,13 @@ class MotionControlCard:
         response : str
             The response detail.
         """
-        with cmd_lock:
+        with self._cmd_lock:
             if direct_or_execute == "direct":
                 # direct command interface, only supports motion functions, parameters and array variables configuration
-                success, response = zmotion_direct(controller_handle, cmd)
+                success, response = zmotion_direct(self._controller_handle, cmd)
             else:
                 # Universal command execution interface, getting block when the controller is not buffered
-                success, response = zmotion_execute(controller_handle, cmd)
+                success, response = zmotion_execute(self._controller_handle, cmd)
 
         if not success == 0:
             raise ConnectionError(
