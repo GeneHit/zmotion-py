@@ -1,0 +1,14 @@
+def make_ext(modname, pyxfilename):
+    from distutils.extension import Extension
+    parts = pyxfilename.rsplit('/', 1)
+    zmotion_library_and_include_path = f'{parts[0]}/lib'
+    return Extension(
+        name=modname,
+        include_dirs=[zmotion_library_and_include_path],
+        library_dirs=[zmotion_library_and_include_path],
+        # Reference: https://gms.tf/ld_library_path-considered-harmful.html#set-the-runtime-library-search-path-at-build-time
+        extra_link_args=['-lzmotion', f'-Wl,-rpath,{zmotion_library_and_include_path}'],
+        sources=[pyxfilename],
+        language='c++',
+        verbose=True
+    )

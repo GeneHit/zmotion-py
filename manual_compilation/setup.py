@@ -7,7 +7,7 @@ setup(
 	name="zmotion_py",
 	version="0.0.1",
 	description="Python Bindings for the library of the ZMotion control card.",
-	url='https://github.com/embodiedintelligence/zmotion-py',
+	url='https://github.com/GeneHit/zmotion-py',
 	packages=setuptools.find_packages(),
 	python_requires='>=3, <4',
 	ext_modules=cythonize(
